@@ -2,28 +2,30 @@ import java.util.ArrayList;
 
 public class Player {
 	ArrayList<Card> rCards;		// cards player has in hand (max 3)
-	int emeraldToken;
-	int diamondToken;
-	int sapphireToken;
-	int onyxToken;
-	int rubyToken;
+	int greenToken;
+	int whiteToken;
+	int blueToken;
+	int blackToken;
+	int redToken;
 	int goldToken;
 	int points;
 	ArrayList<Noble> nobles;
 	ArrayList<Card> tCards;		// cards player has on table
+	String name;
 	
-	public Player() {
+	public Player(String name) {
 		rCards = new ArrayList<Card>();
 		points = 0;
 		tCards = new ArrayList<Card>();
-		emeraldToken = 0;
-		diamondToken = 0;
-		sapphireToken = 0;
-		onyxToken = 0;
-		rubyToken = 0;
+		greenToken = 0;
+		whiteToken = 0;
+		blueToken = 0;
+		blackToken = 0;
+		redToken = 0;
 		goldToken = 0;
 		
 	}
+	
 	
 	// return cards player has on reserve
 	public ArrayList<Card> getRCards() {
@@ -49,40 +51,40 @@ public class Player {
 	}
 	
 	// add tokens
-	public void addEmerald() {
-		emeraldToken++;
+	public void addGreen() {
+		greenToken++;
 	}
-	public void addDiamond() {
-		diamondToken++;
+	public void addWhite() {
+		whiteToken++;
 	}
-	public void addSapphire() {
-		sapphireToken++;
+	public void addBlue() {
+		blueToken++;
 	}
-	public void addOnyx() {
-		onyxToken++;
+	public void addBlack() {
+		blackToken++;
 	}
-	public void addRuby() {
-		rubyToken++;
+	public void addRed() {
+		redToken++;
 	}
 	public void addGold() {
 		goldToken++;
 	}
 	
 	// remove tokens
-	public void removeEmerald() {
-		emeraldToken--;
+	public void removeGreen() {
+		greenToken--;
 	}
-	public void removeDiamond() {
-		diamondToken--;
+	public void removeWhite() {
+		whiteToken--;
 	}
-	public void removeSapphire() {
-		sapphireToken--;
+	public void removeBlue() {
+		blueToken--;
 	}
-	public void removeOnyx() {
-		onyxToken--;
+	public void removeBlack() {
+		blackToken--;
 	}
-	public void removeRuby() {
-		rubyToken--;
+	public void removeRed() {
+		redToken--;
 	}
 	public void removeGold() {
 		goldToken--;
@@ -100,58 +102,58 @@ public class Player {
 	public void purchaseCard(Card card) {
 		int diff = 0;;
 		int gemCost;
-		gemCost = card.getEmeraldCost();
-		if (gemCost > emeraldToken) {
-			diff = gemCost - emeraldToken;
+		gemCost = card.getGreenCost();
+		if (gemCost > greenToken) {
+			diff = gemCost - greenToken;
 			if (diff > 0) {
-				emeraldToken = 0;
+				greenToken = 0;
 				goldToken -= diff;
 			} else {
-				emeraldToken -= gemCost;
+				greenToken -= gemCost;
 			}
 		}
 		
-		gemCost = card.getDiamondCost();
-		if (gemCost > diamondToken) {
-			diff = gemCost - diamondToken;
+		gemCost = card.getWhiteCost();
+		if (gemCost > whiteToken) {
+			diff = gemCost - whiteToken;
 			if (diff > 0) {
-				diamondToken = 0;
+				whiteToken = 0;
 				goldToken -= diff;
 			} else {
-				diamondToken -= gemCost;
+				whiteToken -= gemCost;
 			}
 		}
 		
-		gemCost = card.getSapphireCost();
-		if (gemCost > sapphireToken) {
-			diff = gemCost - sapphireToken;
+		gemCost = card.getBlueCost();
+		if (gemCost > blueToken) {
+			diff = gemCost - blueToken;
 			if (diff > 0) {
-				sapphireToken = 0;
+				blueToken = 0;
 				goldToken -= diff;
 			} else {
-				sapphireToken -= gemCost;
+				blueToken -= gemCost;
 			}
 		}
 		
-		gemCost = card.getOnyxCost();
-		if (gemCost > onyxToken) {
-			diff = gemCost - onyxToken;
+		gemCost = card.getBlackCost();
+		if (gemCost > blackToken) {
+			diff = gemCost - blackToken;
 			if (diff > 0) {
-				onyxToken = 0;
+				blackToken = 0;
 				goldToken -= diff;
 			} else {
-				onyxToken -= gemCost;
+				blackToken -= gemCost;
 			}
 		}
 		
-		gemCost = card.getRubyCost();
-		if (gemCost > rubyToken) {
-			diff = gemCost - rubyToken;
+		gemCost = card.getRedCost();
+		if (gemCost > redToken) {
+			diff = gemCost - redToken;
 			if (diff > 0) {
-				rubyToken = 0;
+				redToken = 0;
 				goldToken -= diff;
 			} else {
-				rubyToken -= gemCost;
+				redToken -= gemCost;
 			}
 		}
 		
@@ -162,20 +164,20 @@ public class Player {
 	// returns true or false depending on whether or not card can be purchased
 	public boolean canPurchaseCard(Card card) {
 		int diff = 0;
-		if (card.getEmeraldCost() > emeraldToken) {
-			diff += card.getEmeraldCost() - emeraldToken;
+		if (card.getGreenCost() > greenToken) {
+			diff += card.getGreenCost() - greenToken;
 		}
-		if (card.getDiamondCost() > diamondToken) {
-			diff += card.getDiamondCost() - diamondToken;
+		if (card.getWhiteCost() > whiteToken) {
+			diff += card.getWhiteCost() - whiteToken;
 		}
-		if (card.getSapphireCost() > sapphireToken) {
-			diff += card.getSapphireCost() - sapphireToken;
+		if (card.getBlueCost() > blueToken) {
+			diff += card.getBlueCost() - blueToken;
 		}
-		if (card.getOnyxCost() > onyxToken) {
-			diff += card.getOnyxCost() - onyxToken;
+		if (card.getBlackCost() > blackToken) {
+			diff += card.getBlackCost() - blackToken;
 		}
-		if (card.getRubyCost() > rubyToken) {
-			diff += card.getRubyCost() - rubyToken;
+		if (card.getRedCost() > redToken) {
+			diff += card.getRedCost() - redToken;
 		}
 		return (diff < goldToken);
 	}
