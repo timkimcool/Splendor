@@ -6,24 +6,16 @@ public class Card {
 	int blackCost;
 	int redCost;
 	int points;
-	int greenDiscount;
-	int whiteDiscount;
-	int blueDiscount;
-	int blackDiscount;
-	int redDiscount;
+	String discount;
 
-	public Card(int greenCost, int whiteCost, int blueCost, int blackCost, int redCost, int points, int greenDiscount, int whiteDiscount, int blueDiscount, int blackDiscount, int redDiscount) {
+	public Card(int points, int blackCost, int whiteCost, int redCost, int blueCost, int greenCost, String discount) {
 		this.greenCost = greenCost;
 		this.whiteCost = whiteCost;
 		this.blueCost = blueCost;
 		this.blackCost = blackCost;
 		this.redCost = redCost;
 		this.points = points;
-		this.greenDiscount = greenDiscount;
-		this.whiteDiscount = whiteDiscount;
-		this.blueDiscount = blueDiscount;
-		this.blackDiscount = blackDiscount;
-		this.redDiscount = redDiscount;
+		this.discount = discount;
 	}
 	
 	public int getGreenCost() {
@@ -48,6 +40,9 @@ public class Card {
 
 	public int getPoints() {
 		return points;
+	}
+	public String getDiscount() {
+		return discount;
 	}
 
 }
