@@ -8,6 +8,7 @@ public class Game {
 	static int totalGemAmount;
 	static int greenCount, whiteCount, blueCount, blackCount, redCount, goldCount;
 	static int noblesCount;
+	static ArrayList<Noble> nobles;
 	static ArrayList<Card> deckOne, deckTwo, deckThree;
 	static boolean finalRound = true;
 	
@@ -17,16 +18,16 @@ public class Game {
 	static boolean whiteAvailable = true;
 	static boolean blackAvailable = true;
 	static boolean goldAvailable = true;
-	
 
 	public Game() {
 		numofPlayers = 1;
 		totalGemAmount = 0;
 		playerList = new ArrayList<Player>();
 		noblesCount = 10;
-//		firstDeck();
-//		secondDeck();
-//		thirdDeck();
+		deckOne = new ArrayList<Card>();
+		deckTwo = new ArrayList<Card>();
+		deckThree = new ArrayList<Card>();
+		nobles = new ArrayList<Noble>();
 	}
 
 	public static void main(String[] args) {
@@ -158,6 +159,218 @@ public class Game {
 	public int getNobleCount() {
 		return noblesCount;
 	}
+	
+	public void createDeckOne() {
+		Card c1 = new Card(0, 0, 1, 1, 1, 1, "Black");
+		Card c2 = new Card(0, 0, 0, 1, 0, 2, "Black");
+		Card c3 = new Card(0, 0, 2, 0, 0, 2, "Black");
+		Card c4 = new Card(0, 1, 0, 3, 0, 1, "Black");
+		Card c5 = new Card(0, 0, 0, 0, 0, 3, "Black");
+		Card c6 = new Card(0, 0, 1, 1, 2, 1, "Black");
+		Card c7 = new Card(0, 0, 2, 1, 2, 0, "Black");
+		Card c8 = new Card(1, 0, 0, 0, 4, 0, "Black");
+		Card c9 = new Card(0, 2, 1, 0, 0, 0, "Blue");
+		Card c10 = new Card(0, 1, 1, 2, 0, 1, "Blue");
+		Card c11 = new Card(0, 1, 1, 1, 0, 1, "Blue");
+		Card c12 = new Card(0, 0, 0, 1, 1, 3, "Blue");
+		Card c13 = new Card(0, 3, 0, 0, 0, 0, "Blue");
+		Card c14 = new Card(0, 0, 1, 2, 0, 2, "Blue");
+		Card c15 = new Card(0, 2, 0, 0, 0, 2, "Blue");
+		Card c16 = new Card(1, 0, 0, 4, 0, 0, "Blue");
+		Card c17 = new Card(0, 0, 2, 0, 1, 0, "Green");
+		Card c18 = new Card(0, 0, 0, 2, 2, 0, "Green");
+		Card c19 = new Card(0, 0, 1, 0, 3, 1, "Green");
+		Card c20 = new Card(0, 1, 1, 1, 1, 0, "Green");
+		Card c21 = new Card(0, 2, 1, 1, 1, 0, "Green");
+		Card c22 = new Card(0, 2, 0, 2, 1, 0, "Green");
+		Card c23 = new Card(0, 0, 0, 3, 0, 0, "Green");
+		Card c24 = new Card(1, 4, 0, 0, 0, 0, "Green");
+		Card c25 = new Card(0, 0, 3, 0, 0, 0, "Red");
+		Card c26 = new Card(0, 3, 1, 1, 0, 0, "Red");
+		Card c27 = new Card(0, 0, 0, 0, 2, 1, "Red");
+		Card c28 = new Card(0, 2, 2, 0, 0, 1, "Red");
+		Card c29 = new Card(0, 1, 2, 0, 1, 1, "Red");
+		Card c30 = new Card(0, 1, 1, 0, 1, 1, "Red");
+		Card c31 = new Card(0, 0, 2, 2, 0, 0, "Red");
+		Card c32 = new Card(1, 0, 4, 0, 0, 0, "Red");
+		Card c33 = new Card(0, 1, 0, 0, 2, 2, "White");
+		Card c34 = new Card(0, 1, 0, 2, 0, 0, "White");
+		Card c35 = new Card(0, 1, 0, 1, 1, 1, "White");
+		Card c36 = new Card(0, 0, 0, 0, 3, 0, "White");
+		Card c37 = new Card(0, 0, 0, 0, 2, 2, "White");
+		Card c38 = new Card(0, 1, 0, 1, 1, 2, "White");
+		Card c39 = new Card(0, 1, 3, 0, 1, 0, "White");
+		Card c40 = new Card(1, 0, 0, 0, 0, 4, "White");
+		deckOne.add(c1);
+		deckOne.add(c2);
+		deckOne.add(c3);
+		deckOne.add(c4);
+		deckOne.add(c5);
+		deckOne.add(c6);
+		deckOne.add(c7);
+		deckOne.add(c8);
+		deckOne.add(c9);
+		deckOne.add(c10);
+		deckOne.add(c11);
+		deckOne.add(c12);
+		deckOne.add(c13);
+		deckOne.add(c14);
+		deckOne.add(c15);
+		deckOne.add(c16);
+		deckOne.add(c17);
+		deckOne.add(c18);
+		deckOne.add(c19);
+		deckOne.add(c20);
+		deckOne.add(c21);
+		deckOne.add(c22);
+		deckOne.add(c23);
+		deckOne.add(c24);
+		deckOne.add(c25);
+		deckOne.add(c26);
+		deckOne.add(c27);
+		deckOne.add(c28);
+		deckOne.add(c29);
+		deckOne.add(c30);
+		deckOne.add(c31);
+		deckOne.add(c32);
+		deckOne.add(c33);
+		deckOne.add(c34);
+		deckOne.add(c35);
+		deckOne.add(c36);
+		deckOne.add(c37);
+		deckOne.add(c38);
+		deckOne.add(c39);
+		deckOne.add(c40);
+	}
+	
+	public void createDeckTwo() {
+		Card c41 = new Card(1, 0, 3, 0, 2, 2, "Black");
+		Card c42 = new Card(1, 2, 3, 0, 0, 3, "Black");
+		Card c43 = new Card(2, 0, 0, 2, 1, 4, "Black");
+		Card c44 = new Card(2, 0, 5, 0, 0, 0, "Black");
+		Card c45 = new Card(2, 0, 0, 3, 0, 5, "Black");
+		Card c46 = new Card(3, 6, 0, 0, 0, 0, "Black");
+		Card c47 = new Card(1, 0, 0, 3, 2, 2, "Blue");
+		Card c48 = new Card(1, 3, 0, 0, 2, 3, "Blue");
+		Card c49 = new Card(2, 0, 5, 0, 3, 0, "Blue");
+		Card c50 = new Card(2, 0, 0, 0, 5, 0, "Blue");
+		Card c51 = new Card(2, 4, 2, 1, 0, 0, "Blue");
+		Card c52 = new Card(3, 0, 0, 0, 6, 0, "Blue");
+		Card c53 = new Card(1, 0, 3, 3, 0, 2, "Green");
+		Card c54 = new Card(1, 2, 2, 0, 3, 0, "Green");
+		Card c55 = new Card(2, 1, 4, 0, 2, 0, "Green");
+		Card c56 = new Card(2, 0, 0, 0, 0, 5, "Green");
+		Card c57 = new Card(2, 0, 0, 0, 5, 3, "Green");
+		Card c58 = new Card(3, 0, 0, 0, 0, 6, "Green");
+		Card c59 = new Card(1, 3, 0, 2, 3, 0, "Red");
+		Card c60 = new Card(1, 3, 2, 2, 0, 0, "Red");
+		Card c61 = new Card(2, 0, 1, 0, 4, 2, "Red");
+		Card c62 = new Card(2, 5, 3, 0, 0, 0, "Red");
+		Card c63 = new Card(2, 5, 0, 0, 0, 0, "Red");
+		Card c64 = new Card(3, 0, 0, 6, 0, 0, "Red");
+		Card c65 = new Card(1, 2, 0, 2, 0, 3, "White");
+		Card c66 = new Card(1, 0, 2, 3, 3, 0, "White");
+		Card c67 = new Card(2, 2, 0, 4, 0, 1, "White");
+		Card c68 = new Card(2, 0, 0, 5, 0, 0, "White");
+		Card c69 = new Card(2, 3, 0, 5, 0, 0, "White");
+		Card c70 = new Card(3, 0, 6, 0, 0, 0, "White");
+		deckTwo.add(c41);
+		deckTwo.add(c42);
+		deckTwo.add(c43);
+		deckTwo.add(c44);
+		deckTwo.add(c45);
+		deckTwo.add(c46);
+		deckTwo.add(c47);
+		deckTwo.add(c48);
+		deckTwo.add(c49);
+		deckTwo.add(c50);
+		deckTwo.add(c51);
+		deckTwo.add(c52);
+		deckTwo.add(c53);
+		deckTwo.add(c54);
+		deckTwo.add(c55);
+		deckTwo.add(c56);
+		deckTwo.add(c57);
+		deckTwo.add(c58);
+		deckTwo.add(c59);
+		deckTwo.add(c60);
+		deckTwo.add(c61);
+		deckTwo.add(c62);
+		deckTwo.add(c63);
+		deckTwo.add(c64);
+		deckTwo.add(c65);
+		deckTwo.add(c66);
+		deckTwo.add(c67);
+		deckTwo.add(c68);
+		deckTwo.add(c69);
+		deckTwo.add(c70);
+	}
+
+	public void createDeckThree() {
+		Card c71 = new Card(3, 0, 3, 3, 3, 5, "Black");
+		Card c72 = new Card(4, 0, 0, 7, 0, 0, "Black");
+		Card c73 = new Card(4, 3, 0, 6, 0, 3, "Black");
+		Card c74 = new Card(5, 3, 0, 7, 0, 0, "Black");
+		Card c75 = new Card(3, 5, 3, 3, 0, 3, "Blue");
+		Card c76 = new Card(4, 0, 7, 0, 0, 0, "Blue");
+		Card c77 = new Card(4, 3, 6, 0, 3, 0, "Blue");
+		Card c78 = new Card(5, 0, 7, 0, 3, 0, "Blue");
+		Card c79 = new Card(3, 3, 5, 3, 3, 0, "Green");
+		Card c80 = new Card(4, 0, 3, 0, 6, 3, "Green");
+		Card c81 = new Card(4, 0, 0, 0, 7, 0, "Green");
+		Card c82 = new Card(5, 0, 0, 0, 7, 3, "Green");
+		Card c83 = new Card(3, 3, 3, 0, 5, 3, "Red");
+		Card c84 = new Card(4, 0, 0, 0, 0, 7, "Red");
+		Card c85 = new Card(4, 0, 0, 3, 3, 6, "Red");
+		Card c86 = new Card(5, 0, 0, 3, 0, 7, "Red");
+		Card c87 = new Card(3, 3, 0, 5, 3, 3, "White");
+		Card c88 = new Card(4, 7, 0, 0, 0, 0, "White");
+		Card c89 = new Card(4, 6, 3, 3, 0, 0, "White");
+		Card c90 = new Card(5, 7, 3, 0, 0, 0, "White");
+		deckThree.add(c71);
+		deckThree.add(c72);
+		deckThree.add(c73);
+		deckThree.add(c74);
+		deckThree.add(c75);
+		deckThree.add(c76);
+		deckThree.add(c77);
+		deckThree.add(c78);
+		deckThree.add(c79);
+		deckThree.add(c80);
+		deckThree.add(c81);
+		deckThree.add(c82);
+		deckThree.add(c83);
+		deckThree.add(c84);
+		deckThree.add(c85);
+		deckThree.add(c86);
+		deckThree.add(c87);
+		deckThree.add(c88);
+		deckThree.add(c89);
+		deckThree.add(c90);
+	}
+	public void createNoble() {
+		Noble n1 = new Noble(3, 4, 0, 0, 4, 0);
+		Noble n2 = new Noble(3, 3, 0, 3, 0, 3);
+		Noble n3 = new Noble(3, 0, 4, 0, 0, 4);
+		Noble n4 = new Noble(3, 0, 0, 4, 0, 4);
+		Noble n5 = new Noble(3, 0, 4, 0, 4, 0);
+		Noble n6 = new Noble(3, 3, 3, 0, 3, 0);
+		Noble n7 = new Noble(3, 0, 3, 0, 3, 3);
+		Noble n8 = new Noble(3, 4, 0, 4, 0, 0);
+		Noble n9 = new Noble(3, 0, 3, 3, 0, 3);
+		Noble n10 = new Noble(3, 3, 0, 3, 3, 0);
+		nobles.add(n1);
+		nobles.add(n2);
+		nobles.add(n3);
+		nobles.add(n4);
+		nobles.add(n5);
+		nobles.add(n6);
+		nobles.add(n7);
+		nobles.add(n8);
+		nobles.add(n9);
+		nobles.add(n10);
+	}
+}
 
 	public void playerTurn() {
 		Scanner stdIn = new Scanner(System.in);
