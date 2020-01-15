@@ -23,7 +23,7 @@ public class Player {
 		blackToken = 0;
 		redToken = 0;
 		goldToken = 0;
-		
+		this.name = name;
 	}
 	
 	
@@ -31,9 +31,6 @@ public class Player {
 	public ArrayList<Card> getRCards() {
 		return rCards;
 	}
-	
-	// return number of cards in reserve
-	
 	
 	// return cards player has on table
 	public ArrayList<Card> getTCards() {
@@ -187,4 +184,7 @@ public class Player {
 		points += noble.getPoint();
 	}
 	
+	public String getName() {
+		return name;
+	}
 }

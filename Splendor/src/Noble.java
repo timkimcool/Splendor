@@ -40,5 +40,11 @@ public class Noble {
 	public int getWhiteCost() {
 		return whiteCost;
 	}
+	
+	public String GUI() {
+		return "<html>" + "Noble" + "<br>" + "Points: " + point + "<br>" + "Green Cost: " + greenCost + "<br>" + 
+				"White Cost: " + whiteCost + "<br>" + "Blue Cost: " + blueCost + "<br>" + 
+				"Black Cost: " + blackCost + "<br>" +	"Red Cost: " + redCost + "</html>";
+	}
 
 }

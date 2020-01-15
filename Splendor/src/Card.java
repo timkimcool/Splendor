@@ -44,5 +44,11 @@ public class Card {
 	public String getDiscount() {
 		return discount;
 	}
+	
+	public String GUI() {
+		return "<html>" + "Points: " + points + "<br>" + "Gem: " + discount + "<br>" + "Green Cost: " + greenCost + "<br>" + 
+				"White Cost: " + whiteCost + "<br>" + "Blue Cost: " + blueCost + "<br>" + 
+				"Black Cost: " + blackCost + "<br>" +	"Red Cost: " + redCost + "</html>";
+	}
 
 }
