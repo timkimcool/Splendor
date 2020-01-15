@@ -121,16 +121,12 @@ public class Game {
 			playerNameList.add("Player Two");
 			numofPlayers++;
 		}
-		if (numofPlayers < playerCount) {
-			p3 = new Player("Player 3");
 		if (numofPlayers < playerTotal) {
-      p3 = new Player("Player 3");
+			p3 = new Player("Player 3");
 			playerList.add(p3);
 			playerNameList.add("Player Three");
 			numofPlayers++;
 		}
-		if (numofPlayers < playerCount) {
-			p4 = new Player("Player 4");
 		if (numofPlayers < playerTotal) {
 			p4 = new Player("Player 4");
 			playerList.add(p4);
