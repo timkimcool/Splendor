@@ -5,14 +5,17 @@ import java.util.Scanner;
 public class Game {
 	static int numofPlayers;
 	static ArrayList<Player> playerList;
+	static ArrayList<String> playerNameList;
 	static Player p1, p2, p3, p4;
-	static int totalGemAmount;
+	static int p1totalGemAmount, p2totalGemAmount, p3totalGemAmount, p4totalGemAmount;
 	static int greenCount, whiteCount, blueCount, blackCount, redCount, goldCount;
+	static int playerGreenCount, playerWhiteCount, playerBlueCount, playerBlackCount, playerRedCount, playerGoldCount;
 	static int noblesCount;
 	static ArrayList<Noble> nobles;
 	static ArrayList<Card> deckOne, deckTwo, deckThree;
-	static boolean finalRound = true;
-	
+	static boolean finalRound = false;
+	static Scanner stdIn;
+
 	static boolean redAvailable = true;
 	static boolean blueAvailable = true;
 	static boolean greenAvailable = true;
@@ -31,18 +34,31 @@ public class Game {
 
 	public Game() {
 		numofPlayers = 1;
-		totalGemAmount = 0;
+		stdIn = new Scanner(System.in);
 		playerList = new ArrayList<Player>();
+		playerNameList = new ArrayList<String>();
 		noblesCount = 10;
 		deckOne = new ArrayList<Card>();
 		deckTwo = new ArrayList<Card>();
 		deckThree = new ArrayList<Card>();
 		nobles = new ArrayList<Noble>();
+    
 		rand = new Random();
 		createDeckOne();
 		createDeckTwo();
 		createDeckThree();
 		createNoble();
+    
+		playerGreenCount = 0;
+		playerWhiteCount = 0;
+		playerBlueCount = 0;
+		playerBlackCount = 0;
+		playerRedCount = 0;
+		playerGoldCount = 0;
+		p1totalGemAmount = 0;
+		p2totalGemAmount = 0;
+		p3totalGemAmount = 0;
+		p4totalGemAmount = 0;
 	}
 
 	public static void main(String[] args) {
@@ -59,7 +75,7 @@ public class Game {
 		Splendor.setGemAmount();
 		Splendor.setNobleCount();
 		Splendor.initialMessage();
-		Splendor.playerTurn();
+		Splendor.gameStart(playerNameList, playerList);
 
 		// starts round and continues until someone obtains 15+ points
 		while (!finalRound) {
@@ -67,45 +83,58 @@ public class Game {
 		}
 		*/
 	}
-/**
- * prints initial message that contains initial token & noble card amount 
- */
+
+	/**
+	 * prints initial message that contains initial token & noble card amount
+	 */
 	public void initialMessage() {
+		System.out.println();
 		System.out.print("Total Number of Red/Blue/Green/White/Black Tokens will be " + greenCount + "\n");
 		System.out.print("Total Number of Gold Tokens will be " + goldCount + "\n");
 		System.out.print("Total Number of Noble Cards will be " + noblesCount + "\n");
-		System.out.println();
 	}
 
 	/**
-	 * Asks user for PlayerCount and adds that number of players to the Arraylist playerList
+	 * Asks user for PlayerCount and adds that number of players to the Arraylist
+	 * playerList
 	 */
 	public void setPlayerCount() {
+
 		Scanner stdIn = new Scanner(System.in);
 		p1 = new Player("Player 1");
+
 		playerList.add(p1);
+		playerNameList.add("Player One");
 
 		System.out.println("Welcome to the game of Splendor!");
 		System.out.print("How many players will be playing? (2-4 players recommended) ");
-		int playerCount = stdIn.nextInt();
-		System.out.println();
-		while (!(playerCount >= 2 && playerCount <= 4)) {
-			System.out.print("Sorry, not a valid number (2-4). Please try again ");
-			playerCount = stdIn.nextInt();
+		String playerCount = stdIn.next();
+		while (!(playerCount.equals("2") || playerCount.equals("3") || playerCount.equals("4"))) {
+			System.out.print("Sorry, not a valid number (2-4). Please try again: ");
+			playerCount = stdIn.next();
 		}
-		if (numofPlayers < playerCount) {
+		int playerTotal = Integer.parseInt(playerCount);
+
+		if (numofPlayers < playerTotal) {
 			p2 = new Player("Player 2");
 			playerList.add(p2);
+			playerNameList.add("Player Two");
 			numofPlayers++;
 		}
 		if (numofPlayers < playerCount) {
 			p3 = new Player("Player 3");
+		if (numofPlayers < playerTotal) {
+      p3 = new Player("Player 3");
 			playerList.add(p3);
+			playerNameList.add("Player Three");
 			numofPlayers++;
 		}
 		if (numofPlayers < playerCount) {
 			p4 = new Player("Player 4");
+		if (numofPlayers < playerTotal) {
+			p4 = new Player("Player 4");
 			playerList.add(p4);
+			playerNameList.add("Player Four");
 			numofPlayers++;
 		}
 	}
@@ -165,10 +194,24 @@ public class Game {
 	public int getGoldCount() {
 		return goldCount;
 	}
-	public int gettotalGemAmount() {
-		return totalGemAmount;
+
+	public int getp1totalGemAmount() {
+		return p1totalGemAmount;
 	}
 
+	public int getp2totalGemAmount() {
+		return p2totalGemAmount;
+	}
+
+	public int getp3totalGemAmount() {
+		return p3totalGemAmount;
+	}
+
+	public int getp4totalGemAmount() {
+		return p4totalGemAmount;
+	}
+
+// randomize the cards in noble deck
 	public void setNobleCount() {
 		if (numofPlayers == 2) {
 			noblesCount = 3;
@@ -182,7 +225,7 @@ public class Game {
 	public int getNobleCount() {
 		return noblesCount;
 	}
-	
+
 	public void createDeckOne() {
 		Card c1 = new Card(0, 0, 1, 1, 1, 1, "Black");
 		Card c2 = new Card(0, 0, 0, 1, 0, 2, "Black");
@@ -265,7 +308,7 @@ public class Game {
 		deckOne.add(c39);
 		deckOne.add(c40);
 	}
-	
+
 	public void createDeckTwo() {
 		Card c41 = new Card(1, 0, 3, 0, 2, 2, "Black");
 		Card c42 = new Card(1, 2, 3, 0, 0, 3, "Black");
@@ -371,6 +414,7 @@ public class Game {
 		deckThree.add(c89);
 		deckThree.add(c90);
 	}
+
 	public void createNoble() {
 		Noble n1 = new Noble(3, 4, 0, 0, 4, 0);
 		Noble n2 = new Noble(3, 3, 0, 3, 0, 3);
@@ -394,100 +438,141 @@ public class Game {
 		nobles.add(n10);
 	}
 
+	/**
+	 * starts the game with turn
+	 * 
+	 * @param player
+	 */
+	public void gameStart(ArrayList<String> nameList, ArrayList<Player> player) {
+		while (!finalRound) {
+			for (Player p : player) {
+				for (String s : nameList) {
+					Turn(s, p);
+				}
+			}
+		}
+	}
 
-	public void playerTurn() {
-		Scanner stdIn = new Scanner(System.in);
-		System.out.print("Player One's Turn! Which action will you take?" + "\n");
+	public void Turn(String s, Player p) {
+		System.out.println();
+		System.out.print(s + ", Which action will you take?" + "\n");
 		System.out.print(
-				"[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-						+ "\n");
+				"[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card: ");
 		String input = stdIn.next();
 		while (!(input.equalsIgnoreCase("G") || input.equalsIgnoreCase("R") || input.equalsIgnoreCase("P"))) {
 			System.out.print("Invalid Command! Please Try again!\n"
-					+ "[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-					+ "\n");
+					+ "[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card: ");
 			input = stdIn.next();
 		}
+		System.out.println();
 		if (input.equalsIgnoreCase("G")) {
-			getGems();
+			getGems(p);
+		} else if (input.equalsIgnoreCase("R")) {
+//			getReserveCard(p);
+		} else {
+//			purchaseCard(p);
 		}
-		else if (input.equalsIgnoreCase("R")) {
-			// getReserveCard();
-		}
-		else {
-			// purchaseCard();
-		}
+	}
 
-		if (numofPlayers == 2) {
-			playerTwoTurn();
-		}
-		if (numofPlayers == 3) {
-			playerTwoTurn();
-			playerThreeTurn();
-		}
-		if (numofPlayers == 4) {
-			playerTwoTurn();
-			playerThreeTurn();
-			playerFourTurn();
-		}
-
-	}
-/**
- * helper method to call player 2's turn
- */
-	public void playerTwoTurn() {
-		Scanner stdIn = new Scanner(System.in);
-		System.out.print("Player Two's Turn! Which action will you take?" + "\n");
-		System.out.print(
-				"[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-						+ "\n");
-		String input = stdIn.next();
-		while (!(input.equalsIgnoreCase("G") || input.equalsIgnoreCase("R") || input.equalsIgnoreCase("P"))) {
-			System.out.print("Invalid Command! Please Try again!\n"
-					+ "[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-					+ "\n");
-			input = stdIn.next();
-		}
-	}
-/**
- * helper method to call player 3's turn
- */
-	public void playerThreeTurn() {
-		Scanner stdIn = new Scanner(System.in);
-		System.out.print("Player Three's Turn! Which action will you take?" + "\n");
-		System.out.print(
-				"[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-						+ "\n");
-		String input = stdIn.next();
-		while (!(input.equalsIgnoreCase("G") || input.equalsIgnoreCase("R") || input.equalsIgnoreCase("P"))) {
-			System.out.print("Invalid Command! Please Try again!\n"
-					+ "[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-					+ "\n");
-			input = stdIn.next();
-		}
-	}
-/**
- * helper method to call player 4's turn
- */
-	public void playerFourTurn() {
-		Scanner stdIn = new Scanner(System.in);
-		System.out.print("Player Four's Turn! Which action will you take?" + "\n");
-		System.out.print(
-				"[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-						+ "\n");
-		String input = stdIn.next();
-		while (!(input.equalsIgnoreCase("G") || input.equalsIgnoreCase("R") || input.equalsIgnoreCase("P"))) {
-			System.out.print("Invalid Command! Please Try again!\n"
-					+ "[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card"
-					+ "\n");
-			input = stdIn.next();
-		}
-	}
 	/**
 	 * helper method for getting tokens per player's turn
 	 */
-	public void getGems() {
-		System.out.print("Pick 3 tokens of different colors or 2 tokens of the same color!");
+	public void getGems(Player p) {
+		System.out.print("Current amount of green tokens: " + greenCount + "\n");
+		System.out.print("Current amount of white tokens: " + whiteCount + "\n");
+		System.out.print("Current amount of blue tokens: " + blueCount + "\n");
+		System.out.print("Current amount of black tokens: " + blackCount + "\n");
+		System.out.print("Current amount of red tokens: " + redCount + "\n");
+		System.out.println();
+		System.out.print("Choose [3] to choose 3 tokens of different colors OR Choose [2] "
+				+ "to choose 2 tokens of the same colors (as long as there is at least 4 of that color token available: ");
+		String usertokenChoice = stdIn.next();
+		while (!(usertokenChoice.equals("2") || usertokenChoice.equals("3"))) {
+			System.out.print("Invalid number. Please try again!" + "\n");
+			System.out.print("Choose [3] to choose 3 tokens of different colors OR Choose [2] "
+					+ "to choose 2 tokens of the same colors (as long as there is at least 4 of that color token available): ");
+			usertokenChoice = stdIn.next();
+		}
+		int tokenChoice = Integer.parseInt(usertokenChoice);
+		if (tokenChoice == 2) {
+			System.out.print("Which color token would you like to select? ");
+			String colorChoice = stdIn.next();
+			while (!(colorChoice.equalsIgnoreCase("green") || colorChoice.equalsIgnoreCase("white")
+					|| colorChoice.contentEquals("blue") || colorChoice.equalsIgnoreCase("black")
+					|| colorChoice.equalsIgnoreCase("red"))) {
+				System.out.print("Invalid color. Please try again!" + "\n");
+				System.out.print("Which color token would you like to select? ");
+				colorChoice = stdIn.next();
+			}
+			// FIX this part -> make it into a while loop for each color
+			if (colorChoice.equalsIgnoreCase("green")) {
+				if (greenCount < 4) {
+					System.out.print(
+							"Not enough tokens are available (" + greenCount + "), please try a different color: ");
+					colorChoice = stdIn.next();
+				}
+				if (greenCount >= 4) {
+					greenCount -= 2;
+					p.addGreen();
+					p.addGreen();
+				}
+			} 
+			if (colorChoice.equalsIgnoreCase("white")) {
+				if (whiteCount < 4) {
+					System.out.print(
+							"Not enough tokens are available (" + whiteCount + "), please try a different color: ");
+					colorChoice = stdIn.next();
+				}
+				if (whiteCount >= 4) {
+					whiteCount -= 2;
+					p.addWhite();
+					p.addWhite();
+				}
+			} 
+			if (colorChoice.equalsIgnoreCase("blue")) {
+				if (blueCount < 4) {
+					System.out.print(
+							"Not enough tokens are available (" + blueCount + "), please try a different color: ");
+					colorChoice = stdIn.next();
+				}
+				if (blueCount >= 4) {
+					blueCount -= 2;
+					p.addBlue();
+					p.addBlue();
+				}
+			} 
+			if (colorChoice.equalsIgnoreCase("black")) {
+				if (blackCount < 4) {
+					System.out.print(
+							"Not enough tokens are available(" + blackCount + "), please try a different color: ");
+					colorChoice = stdIn.next();
+				}
+				if (blackCount >= 4) {
+					blackCount -= 2;
+					p.addBlack();
+					p.addBlack();
+				}
+			} 
+			if (colorChoice.equalsIgnoreCase("red")){
+				if (redCount < 4) {
+					System.out
+							.print("Not enough tokens are available(" + redCount + "), please try a different color: ");
+					colorChoice = stdIn.next();
+				}
+				if (redCount >= 4) {
+					redCount -= 2;
+					p.addRed();
+					p.addRed();
+				}
+			}
+		}
+
+		if (tokenChoice == 3) {
+			System.out.print("Which color token would you like to select? ");
+			String colorChoice = stdIn.next();
+			
+			
+		}
 	}
 	
 	
