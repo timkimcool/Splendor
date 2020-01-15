@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -21,6 +22,15 @@ public class Game {
 	static boolean whiteAvailable = true;
 	static boolean blackAvailable = true;
 	static boolean goldAvailable = true;
+	
+	static Random rand;
+	
+	static Card deckOne1, deckOne2, deckOne3, deckOne4;
+	static Card deckTwo1, deckTwo2, deckTwo3, deckTwo4;
+	static Card deckThree1, deckThree2, deckThree3, deckThree4;
+	static Noble noble1, noble2, noble3, noble4, noble5;
+	
+	static GameGUI UI;
 
 	public Game() {
 		numofPlayers = 1;
@@ -32,6 +42,13 @@ public class Game {
 		deckTwo = new ArrayList<Card>();
 		deckThree = new ArrayList<Card>();
 		nobles = new ArrayList<Noble>();
+    
+		rand = new Random();
+		createDeckOne();
+		createDeckTwo();
+		createDeckThree();
+		createNoble();
+    
 		playerGreenCount = 0;
 		playerWhiteCount = 0;
 		playerBlueCount = 0;
@@ -47,6 +64,13 @@ public class Game {
 	public static void main(String[] args) {
 		// set up new game
 		Game Splendor = new Game();
+		noblesCount = 5;
+		setupCardsNobles();
+		UI = new GameGUI(Splendor);
+		
+		
+		
+		/*
 		Splendor.setPlayerCount();
 		Splendor.setGemAmount();
 		Splendor.setNobleCount();
@@ -57,6 +81,7 @@ public class Game {
 		while (!finalRound) {
 
 		}
+		*/
 	}
 
 	/**
@@ -75,7 +100,9 @@ public class Game {
 	 */
 	public void setPlayerCount() {
 
-		p1 = new Player();
+		Scanner stdIn = new Scanner(System.in);
+		p1 = new Player("Player 1");
+
 		playerList.add(p1);
 		playerNameList.add("Player One");
 
@@ -89,19 +116,23 @@ public class Game {
 		int playerTotal = Integer.parseInt(playerCount);
 
 		if (numofPlayers < playerTotal) {
-			p2 = new Player();
+			p2 = new Player("Player 2");
 			playerList.add(p2);
 			playerNameList.add("Player Two");
 			numofPlayers++;
 		}
+		if (numofPlayers < playerCount) {
+			p3 = new Player("Player 3");
 		if (numofPlayers < playerTotal) {
-			p3 = new Player();
+      p3 = new Player("Player 3");
 			playerList.add(p3);
 			playerNameList.add("Player Three");
 			numofPlayers++;
 		}
+		if (numofPlayers < playerCount) {
+			p4 = new Player("Player 4");
 		if (numofPlayers < playerTotal) {
-			p4 = new Player();
+			p4 = new Player("Player 4");
 			playerList.add(p4);
 			playerNameList.add("Player Four");
 			numofPlayers++;
@@ -542,5 +573,95 @@ public class Game {
 			
 			
 		}
+	}
+	
+	
+	static void setupCardsNobles() {
+		
+		deckOne1 = deckOne.remove(rand.nextInt(deckOne.size()));
+		deckOne2 = deckOne.remove(rand.nextInt(deckOne.size()));
+		deckOne3 = deckOne.remove(rand.nextInt(deckOne.size()));
+		deckOne4 = deckOne.remove(rand.nextInt(deckOne.size()));
+		
+		deckTwo1 = deckTwo.remove(rand.nextInt(deckTwo.size()));
+		deckTwo2 = deckTwo.remove(rand.nextInt(deckTwo.size()));
+		deckTwo3 = deckTwo.remove(rand.nextInt(deckTwo.size()));
+		deckTwo4 = deckTwo.remove(rand.nextInt(deckTwo.size()));
+		
+		deckThree1 = deckThree.remove(rand.nextInt(deckThree.size()));
+		deckThree2 = deckThree.remove(rand.nextInt(deckThree.size()));
+		deckThree3 = deckThree.remove(rand.nextInt(deckThree.size()));
+		deckThree4 = deckThree.remove(rand.nextInt(deckThree.size()));
+		
+		noble1 = nobles.remove(rand.nextInt(nobles.size()));
+		noble2 = nobles.remove(rand.nextInt(nobles.size()));
+		noble3 = nobles.remove(rand.nextInt(nobles.size()));
+		if (noblesCount > 3) {
+			noble4 = nobles.remove(rand.nextInt(nobles.size()));
+		}
+		if (noblesCount > 4) {
+			noble5 = nobles.remove(rand.nextInt(nobles.size()));
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	public Card getDeckOne1() {
+		return deckOne1;
+	}
+	public Card getDeckOne2() {
+		return deckOne2;
+	}
+	public Card getDeckOne3() {
+		return deckOne3;
+	}
+	public Card getDeckOne4() {
+		return deckOne4;
+	}
+	
+	public Card getDeckTwo1() {
+		return deckTwo1;
+	}
+	public Card getDeckTwo2() {
+		return deckTwo2;
+	}
+	public Card getDeckTwo3() {
+		return deckTwo3;
+	}
+	public Card getDeckTwo4() {
+		return deckTwo4;
+	}
+
+	public Card getDeckThree1() {
+		return deckThree1;
+	}
+	public Card getDeckThree2() {
+		return deckThree2;
+	}
+	public Card getDeckThree3() {
+		return deckThree3;
+	}
+	public Card getDeckThree4() {
+		return deckThree4;
+	}
+	
+	public Noble getNoble1() {
+		return noble1;
+	}
+	public Noble getNoble2() {
+		return noble2;
+	}
+	public Noble getNoble3() {
+		return noble3;
+	}
+	public Noble getNoble4() {
+		return noble4;
+	}
+	public Noble getNoble5() {
+		return noble5;
 	}
 }
