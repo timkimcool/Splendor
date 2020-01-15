@@ -22,14 +22,14 @@ public class Game {
 	static boolean whiteAvailable = true;
 	static boolean blackAvailable = true;
 	static boolean goldAvailable = true;
-	
+
 	static Random rand;
-	
+
 	static Card deckOne1, deckOne2, deckOne3, deckOne4;
 	static Card deckTwo1, deckTwo2, deckTwo3, deckTwo4;
 	static Card deckThree1, deckThree2, deckThree3, deckThree4;
 	static Noble noble1, noble2, noble3, noble4, noble5;
-	
+
 	static GameGUI UI;
 
 	public Game() {
@@ -42,13 +42,13 @@ public class Game {
 		deckTwo = new ArrayList<Card>();
 		deckThree = new ArrayList<Card>();
 		nobles = new ArrayList<Noble>();
-    
+
 		rand = new Random();
 		createDeckOne();
 		createDeckTwo();
 		createDeckThree();
 		createNoble();
-    
+
 		playerGreenCount = 0;
 		playerWhiteCount = 0;
 		playerBlueCount = 0;
@@ -64,24 +64,21 @@ public class Game {
 	public static void main(String[] args) {
 		// set up new game
 		Game Splendor = new Game();
-		noblesCount = 5;
-		setupCardsNobles();
-		UI = new GameGUI(Splendor);
-		
-		
-		
-		/*
+//		noblesCount = 5;
+//		setupCardsNobles();
+//		UI = new GameGUI(Splendor);
+
 		Splendor.setPlayerCount();
 		Splendor.setGemAmount();
 		Splendor.setNobleCount();
 		Splendor.initialMessage();
-		Splendor.gameStart(playerNameList, playerList);
+		Splendor.gameStart(playerList);
 
 		// starts round and continues until someone obtains 15+ points
 		while (!finalRound) {
 
 		}
-		*/
+
 	}
 
 	/**
@@ -102,7 +99,6 @@ public class Game {
 
 		Scanner stdIn = new Scanner(System.in);
 		p1 = new Player("Player 1");
-
 		playerList.add(p1);
 		playerNameList.add("Player One");
 
@@ -439,19 +435,17 @@ public class Game {
 	 * 
 	 * @param player
 	 */
-	public void gameStart(ArrayList<String> nameList, ArrayList<Player> player) {
+	public void gameStart(ArrayList<Player> player) {
 		while (!finalRound) {
 			for (Player p : player) {
-				for (String s : nameList) {
-					Turn(s, p);
-				}
+				Turn(p);
 			}
 		}
 	}
 
-	public void Turn(String s, Player p) {
+	public void Turn(Player p) {
 		System.out.println();
-		System.out.print(s + ", Which action will you take?" + "\n");
+		System.out.print(p.getName() + ", Which action will you take?" + "\n");
 		System.out.print(
 				"[G] - take Gems | [R] - reserve a card and take Gold coin (if available) | [P] - purchase a card: ");
 		String input = stdIn.next();
@@ -512,7 +506,7 @@ public class Game {
 					p.addGreen();
 					p.addGreen();
 				}
-			} 
+			}
 			if (colorChoice.equalsIgnoreCase("white")) {
 				if (whiteCount < 4) {
 					System.out.print(
@@ -524,7 +518,7 @@ public class Game {
 					p.addWhite();
 					p.addWhite();
 				}
-			} 
+			}
 			if (colorChoice.equalsIgnoreCase("blue")) {
 				if (blueCount < 4) {
 					System.out.print(
@@ -536,7 +530,7 @@ public class Game {
 					p.addBlue();
 					p.addBlue();
 				}
-			} 
+			}
 			if (colorChoice.equalsIgnoreCase("black")) {
 				if (blackCount < 4) {
 					System.out.print(
@@ -548,8 +542,8 @@ public class Game {
 					p.addBlack();
 					p.addBlack();
 				}
-			} 
-			if (colorChoice.equalsIgnoreCase("red")){
+			}
+			if (colorChoice.equalsIgnoreCase("red")) {
 				if (redCount < 4) {
 					System.out
 							.print("Not enough tokens are available(" + redCount + "), please try a different color: ");
@@ -566,29 +560,27 @@ public class Game {
 		if (tokenChoice == 3) {
 			System.out.print("Which color token would you like to select? ");
 			String colorChoice = stdIn.next();
-			
-			
+
 		}
 	}
-	
-	
+
 	static void setupCardsNobles() {
-		
+
 		deckOne1 = deckOne.remove(rand.nextInt(deckOne.size()));
 		deckOne2 = deckOne.remove(rand.nextInt(deckOne.size()));
 		deckOne3 = deckOne.remove(rand.nextInt(deckOne.size()));
 		deckOne4 = deckOne.remove(rand.nextInt(deckOne.size()));
-		
+
 		deckTwo1 = deckTwo.remove(rand.nextInt(deckTwo.size()));
 		deckTwo2 = deckTwo.remove(rand.nextInt(deckTwo.size()));
 		deckTwo3 = deckTwo.remove(rand.nextInt(deckTwo.size()));
 		deckTwo4 = deckTwo.remove(rand.nextInt(deckTwo.size()));
-		
+
 		deckThree1 = deckThree.remove(rand.nextInt(deckThree.size()));
 		deckThree2 = deckThree.remove(rand.nextInt(deckThree.size()));
 		deckThree3 = deckThree.remove(rand.nextInt(deckThree.size()));
 		deckThree4 = deckThree.remove(rand.nextInt(deckThree.size()));
-		
+
 		noble1 = nobles.remove(rand.nextInt(nobles.size()));
 		noble2 = nobles.remove(rand.nextInt(nobles.size()));
 		noble3 = nobles.remove(rand.nextInt(nobles.size()));
@@ -599,35 +591,35 @@ public class Game {
 			noble5 = nobles.remove(rand.nextInt(nobles.size()));
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	public Card getDeckOne1() {
 		return deckOne1;
 	}
+
 	public Card getDeckOne2() {
 		return deckOne2;
 	}
+
 	public Card getDeckOne3() {
 		return deckOne3;
 	}
+
 	public Card getDeckOne4() {
 		return deckOne4;
 	}
-	
+
 	public Card getDeckTwo1() {
 		return deckTwo1;
 	}
+
 	public Card getDeckTwo2() {
 		return deckTwo2;
 	}
+
 	public Card getDeckTwo3() {
 		return deckTwo3;
 	}
+
 	public Card getDeckTwo4() {
 		return deckTwo4;
 	}
@@ -635,28 +627,35 @@ public class Game {
 	public Card getDeckThree1() {
 		return deckThree1;
 	}
+
 	public Card getDeckThree2() {
 		return deckThree2;
 	}
+
 	public Card getDeckThree3() {
 		return deckThree3;
 	}
+
 	public Card getDeckThree4() {
 		return deckThree4;
 	}
-	
+
 	public Noble getNoble1() {
 		return noble1;
 	}
+
 	public Noble getNoble2() {
 		return noble2;
 	}
+
 	public Noble getNoble3() {
 		return noble3;
 	}
+
 	public Noble getNoble4() {
 		return noble4;
 	}
+
 	public Noble getNoble5() {
 		return noble5;
 	}
